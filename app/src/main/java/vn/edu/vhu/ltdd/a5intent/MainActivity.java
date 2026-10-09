@@ -19,12 +19,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    // TODO: thay 2201234567 bằng MSSV của bạn
-    private static final String TAG = "A5_2201234567";
 
-    /** Khóa dùng chung cho hai màn hình — luôn khai báo hằng số, không gõ chuỗi hai lần. */
+    private static final String TAG = "A5_231A290127";
+
+
     public static final String EXTRA_CONTACT = "extra_contact";
     public static final String EXTRA_NGUOI_GUI = "extra_nguoi_gui";
 
@@ -83,14 +85,29 @@ public class MainActivity extends AppCompatActivity {
             edtHoTen.setError(getString(R.string.err_empty));
             return;
         }
+
+        // 1. Tạo đối tượng Contact từ ô nhập (yêu cầu cơ bản)
         Contact contact = new Contact(hoTen,
                 edtDienThoai.getText().toString().trim(),
                 edtEmail.getText().toString().trim());
 
+        // 2. Tạo một ArrayList chứa danh sách các Contact (BÀI NÂNG CAO NC2)
+        ArrayList<Contact> danhSach = new ArrayList<>();
+        danhSach.add(contact); // Cho người vừa nhập vào danh sách luôn
+        danhSach.add(new Contact("Duy", "099999999", "duy@gmail.com")); // Người giả lập thứ 2
+        danhSach.add(new Contact("Giáo Viên", "088888888", "gv@vhu.edu.vn")); // Người thứ 3
+
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(EXTRA_CONTACT, contact);          // đóng gói cả đối tượng
-        intent.putExtra(EXTRA_NGUOI_GUI, TAG);            // dữ liệu đơn giản kèm theo
-        chiTietLauncher.launch(intent);                   // mở và CHỜ kết quả trả về
+
+        // 3. Đóng gói để gửi đi
+        intent.putExtra(EXTRA_CONTACT, contact);           // Gửi đối tượng đơn lẻ
+        intent.putExtra(EXTRA_NGUOI_GUI, TAG);             // Gửi chuỗi đơn giản
+
+        // GỬI DANH SÁCH (BÀI NÂNG CAO NC2)
+        intent.putParcelableArrayListExtra("EXTRA_LIST_CONTACT", danhSach);
+
+        // Mở và CHỜ kết quả
+        chiTietLauncher.launch(intent);
     }
 
     // ============ INTENT NGẦM ĐỊNH (implicit) ============

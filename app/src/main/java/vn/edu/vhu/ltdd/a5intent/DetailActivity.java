@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.core.content.IntentCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -43,7 +46,19 @@ public class DetailActivity extends AppCompatActivity {
         contact = IntentCompat.getParcelableExtra(getIntent(),
                 MainActivity.EXTRA_CONTACT, Contact.class);
         String nguoiGui = getIntent().getStringExtra(MainActivity.EXTRA_NGUOI_GUI);
+// --- BẮT ĐẦU CODE BÀI NÂNG CAO NC2 ---
+        ArrayList<Contact> danhSachNhanDuoc;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            danhSachNhanDuoc = getIntent().getParcelableArrayListExtra("EXTRA_LIST_CONTACT", Contact.class);
+        } else {
+            danhSachNhanDuoc = getIntent().getParcelableArrayListExtra("EXTRA_LIST_CONTACT");
+        }
 
+// Kiểm tra xem danh sách có nhận được không bằng cách hiện một thông báo nhỏ (Toast)
+        if (danhSachNhanDuoc != null && danhSachNhanDuoc.size() > 0) {
+            Toast.makeText(this, "NC2: Đã nhận thành công danh sách " + danhSachNhanDuoc.size() + " người!", Toast.LENGTH_LONG).show();
+        }
+// --- KẾT THÚC CODE BÀI NÂNG CAO NC2 ---
         // 3. Luôn kiểm tra null phòng trường hợp Activity được mở mà không có dữ liệu
         if (contact == null) {
             tvThongTin.setText(R.string.no_data);
