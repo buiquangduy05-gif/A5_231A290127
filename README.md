@@ -2,9 +2,9 @@
 
 ## 👤 Thông tin sinh viên
 - **Họ và tên:** Bùi Quang Duy
-- **MSSV:** (Điền MSSV của bạn vào đây)
+- **MSSV:** 231A290126
 - **Lớp học phần:** Lập trình trên thiết bị di động
-- **Repo GitHub:** A5_<MSSV>
+- **Repo GitHub:** A5_231A290127
 
 ## 📝 Tổng quan dự án
 Ứng dụng "Danh bạ mini" được xây dựng trên Android Studio bằng ngôn ngữ Java và giao diện XML. Dự án nhằm thực hành các kỹ thuật cơ bản và nâng cao về `Intent` trong Android, bao gồm:
