@@ -2,7 +2,7 @@
 
 ## 👤 Thông tin sinh viên
 - **Họ và tên:** Bùi Quang Duy
-- **MSSV:** 231A290126
+- **MSSV:** 231A290127
 - **Lớp học phần:** Lập trình trên thiết bị di động
 - **Repo GitHub:** A5_231A290127
 
