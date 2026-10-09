@@ -75,6 +75,24 @@ public class MainActivity extends AppCompatActivity {
         btnGoi.setOnClickListener(v -> goiDien());
         btnWeb.setOnClickListener(v -> moTrangWeb());
         btnChiaSe.setOnClickListener(v -> chiaSe());
+        // --- BẮT ĐẦU CODE BÀI NÂNG CAO NC4 ---
+// Lấy Intent đã dùng để mở màn hình này
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+// Kiểm tra: Có phải ai đó đang muốn SEND (gửi) một đoạn TEXT (văn bản) không?
+        if (Intent.ACTION_SEND.equals(action) && "text/plain".equals(type)) {
+            // Nếu đúng, lấy nội dung văn bản đó ra
+            String vanBanChiaSe = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+            // Nếu văn bản không rỗng, tự động điền nó vào ô EditText Họ Tên
+            if (vanBanChiaSe != null) {
+                edtHoTen.setText(vanBanChiaSe);
+                Toast.makeText(this, "Đã nhận nội dung từ ứng dụng khác!", Toast.LENGTH_LONG).show();
+            }
+        }
+// --- KẾT THÚC CODE BÀI NÂNG CAO NC4 ---
     }
 
     // ============ INTENT TƯỜNG MINH (explicit) ============
